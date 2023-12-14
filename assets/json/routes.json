@@ -1,0 +1,69 @@
+{
+    "routes": [
+        {
+            "id": 1,
+            "nome": "/",
+            "subitem": "Rota raiz do servidor."
+        },
+        {
+            "id": 2,
+            "nome": "/admin/*",
+            "subitem": "Sub-rotas relacionadas ao acesso administrador."
+        },
+        {
+            "id": 3,
+            "nome": "/api_token",
+            "subitem": "Rota para obtenção do token de autenticação da API."
+        },
+        {
+            "id": 4,
+            "nome": "/api",
+            "subitem": "Rota base da API."
+        },
+        {
+            "id": 5,
+            "nome": "/api/activities",
+            "subitem": "Rota para acessar as atividades."
+        },
+        {
+            "id": 6,
+            "nome": "/api/activities/<slug>",
+            "subitem": "Rota para acessar uma atividade específica com base em sua slug."
+        },
+        {
+            "id": 7,
+            "nome": "/api/document_types",
+            "subitem": "Rota para acessar os tipos de documentos."
+        },
+        {
+            "id": 8,
+            "nome": "/api/document_types/<slug>",
+            "subitem": "Rota para acessar um tipo de documento específico com base em sua slug."
+        },
+        {
+            "id": 9,
+            "nome": "/api/health_profiles",
+            "subitem": "Rota para acessar os perfis de profissionais de saúde."
+        },
+        {
+            "id": 10,
+            "nome": "/api/health_profiles/<slug>",
+            "subitem": "Rota para acessar os perfil de profissional de saúde especifico"
+        },
+        {
+            "id": 11,
+            "nome": "/api/patient_profiles",
+            "subitem": "Rota para acessar os perfis de pacientes"
+        },
+        {
+            "id": 12,
+            "nome": "/api/patient_profiles/<slug>",
+            "subitem": "Rota para acessar os perfil de paciente especifico"
+        },
+        {
+            "id": 13,
+            "nome": "/api/patient_profiles/<slug>",
+            "subitem": "Rota para acessar os perfil de paciente especifico"
+        }
+    ]
+}

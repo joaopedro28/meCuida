@@ -1,0 +1,64 @@
+{
+    "diabetes": [
+        {
+            "id": 1,
+            "title": "O que é Diabetes Mellitus tipo 2?",
+            "content": "Diabetes Mellitus tipo 2 é uma condição crônica na qual o corpo não produz insulina suficiente ou as células não respondem adequadamente à insulina. A insulina é essencial para ajudar as células a absorverem a glicose da corrente sanguínea, proporcionando energia. No Diabetes tipo 2, o excesso de glicose pode se acumular no sangue, causando problemas de saúde.",
+            "isCollapsed": true
+        },
+        {
+            "id": 2,
+            "title": "Quais são os principais cuidados para pessoas com Diabetes Mellitus tipo 2?",
+            "content": "Para pessoas com Diabetes Mellitus tipo 2, é crucial adotar um estilo de vida saudável. Isso inclui monitorar regularmente os níveis de glicose no sangue, seguir uma dieta equilibrada, praticar atividade física regular, controlar o peso e evitar o consumo excessivo de açúcares e carboidratos. Além disso, é fundamental seguir as orientações médicas e tomar os medicamentos prescritos conforme indicado.",
+            "isCollapsed": true
+        },
+        {
+            "id": 3,
+            "title": "Quais são as atitudes preventivas para o Diabetes Mellitus tipo 2?",
+            "content": "Prevenir o Diabetes Mellitus tipo 2 envolve a adoção de hábitos saudáveis. Manter um peso adequado, praticar atividade física regular, evitar o tabagismo, moderar o consumo de álcool e seguir uma dieta balanceada são medidas preventivas eficazes. Além disso, é importante realizar exames de rotina para monitorar a saúde e identificar precocemente qualquer sinal de diabetes.",
+            "isCollapsed": true
+        },
+        {
+            "id": 4,
+            "title": "Quais são as principais medicações utilizadas no tratamento do Diabetes Mellitus tipo 2?",
+            "content": "O tratamento do Diabetes Mellitus tipo 2 pode envolver o uso de medicamentos orais, como metformina, sulfonilureias, meglitinidas, entre outros. Em alguns casos, pode ser necessária a administração de insulina. A escolha do medicamento depende das características individuais do paciente e da progressão da doença. O acompanhamento médico regular é essencial para ajustar o tratamento conforme necessário.",
+            "isCollapsed": true
+        },
+        {
+            "id": 5,
+            "title": "Quais são as principais dúvidas frequentes sobre Diabetes Mellitus tipo 2?",
+            "content": "Dúvidas comuns sobre Diabetes Mellitus tipo 2 incluem questões sobre dieta adequada, controle de glicose, sintomas de hipoglicemia, efeitos colaterais dos medicamentos, impacto da doença na qualidade de vida e possíveis complicações a longo prazo. É importante esclarecer essas dúvidas com profissionais de saúde e buscar informações confiáveis para um melhor gerenciamento da condição.",
+            "isCollapsed": true
+        },
+        {
+            "id": 6,
+            "title": "Quais são os sintomas comuns do Diabetes Mellitus tipo 2?",
+            "content": "Os sintomas do Diabetes Mellitus tipo 2 podem incluir aumento da sede, aumento da frequência urinária, fadiga, visão turva, feridas que cicatrizam lentamente e perda de peso não intencional. É importante estar ciente desses sinais e procurar orientação médica se eles ocorrerem.",
+            "isCollapsed": true
+        },
+        {
+            "id": 7,
+            "title": "Como a atividade física beneficia pessoas com Diabetes Mellitus tipo 2?",
+            "content": "A atividade física regular é fundamental para pessoas com Diabetes Mellitus tipo 2. Ela ajuda a controlar os níveis de glicose no sangue, melhora a sensibilidade à insulina, auxilia no controle do peso, reduz a pressão arterial e promove o bem-estar geral. Antes de iniciar um programa de exercícios, é essencial consultar um profissional de saúde para garantir que seja seguro e adequado às condições individuais.",
+            "isCollapsed": true
+        },
+        {
+            "id": 8,
+            "title": "Quais são as possíveis complicações do Diabetes Mellitus tipo 2?",
+            "content": "O Diabetes Mellitus tipo 2 pode levar a complicações graves, como doenças cardíacas, acidente vascular cerebral, problemas renais, danos nos nervos (neuropatia), problemas oculares e feridas que não cicatrizam adequadamente. O controle adequado da glicose, juntamente com um estilo de vida saudável, é crucial para reduzir o risco de complicações.",
+            "isCollapsed": true
+        },
+        {
+            "id": 9,
+            "title": "Qual é a importância do acompanhamento regular com profissionais de saúde?",
+            "content": "O acompanhamento regular com profissionais de saúde, como médicos, enfermeiros e nutricionistas, é essencial para o gerenciamento eficaz do Diabetes Mellitus tipo 2. Essas consultas permitem ajustar o plano de tratamento conforme necessário, monitorar os níveis de glicose, avaliar a eficácia dos medicamentos e fornecer orientações sobre estilo de vida saudável.",
+            "isCollapsed": true
+        },
+        {
+            "id": 10,
+            "title": "Quais são os alimentos recomendados para pessoas com Diabetes Mellitus tipo 2?",
+            "content": "Uma dieta balanceada é crucial para o controle do Diabetes Mellitus tipo 2. Recomenda-se incluir alimentos ricos em fibras, como frutas, vegetais e grãos integrais. O controle adequado das porções, a moderação no consumo de açúcares e carboidratos simples, e a escolha de fontes saudáveis de proteína são práticas importantes. Um nutricionista pode oferecer orientações personalizadas para atender às necessidades individuais.",
+            "isCollapsed": true
+        }
+    ]
+}
