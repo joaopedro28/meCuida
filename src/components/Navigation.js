@@ -8,7 +8,7 @@ import Dashboard from '../screens/Dashboard';
 import Home from '../screens/HomePage';
 import Lembretes from '../screens/ReactPage';
 import Registros from '../screens/RoutesPage';
-import Consultas from '../screens/MonografiaPage';
+import Consultas from '../screens/Lembretes';
 import Opcoes from '../screens/Options';
 
 const Stack = createStackNavigator();
