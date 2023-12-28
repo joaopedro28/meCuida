@@ -34,7 +34,7 @@ export default function App() {
     const database = new Databases(appwrite);
 
     const { data, loading, error } = useAsyncData(() =>
-        database.listDocuments('6566c18f5cb93a295c7f', '6566c19ecb55502a18d9')
+        database.listDocuments('657b4065cd96d233005a', '657b4073116903a3a9ac')
     );
 
     return (

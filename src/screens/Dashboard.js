@@ -6,7 +6,7 @@ import Header from '../components/Header';
 // Pages
 
 import HomePage from './HomePage';
-import ReactPage from './ReactPage';
+import RegisterActivities from './RegisterActivities';
 import Lembretes from './Lembretes';
 import RoutesPage from './RoutesPage';
 import OptionsPage from './Options';
@@ -67,12 +67,12 @@ const Dashboard = () => {
 
                 <Tab.Screen
                     name="Registrar Atividades"
-                    component={ReactPage}
+                    component={RegisterActivities}
                     options={{
                         backgroundColor: 'transparent',
-                        tabBarLabel: 'React',
+                        tabBarLabel: 'Registrar Atividades',
                         tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons name="react" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+                            <MaterialCommunityIcons name="playlist-edit" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
                         ),
                         tabBarColor: '#2b47e5'
                     }} />

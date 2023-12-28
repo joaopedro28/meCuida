@@ -37,7 +37,7 @@ function Lembretes() {
         if (novoLembrete.trim() !== '') {
             const novoLembreteObj = { texto: novoLembrete, tipo: tipoLembrete, notificacao: notificacaoAtiva };
             const novosLembretes = [...lembretes, novoLembreteObj];
-            
+
             setLembretes(novosLembretes);
             setNovoLembrete('');
 
@@ -49,23 +49,6 @@ function Lembretes() {
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>Lembretes</Text>
-
-            {/* Lista de lembretes */}
-            {lembretes.map((lembrete, index) => (
-                <View key={index} style={styles.lembreteItem}>
-                    <Text>{lembrete.texto}</Text>
-                    <Text>Tipo: {lembrete.tipo}</Text>
-                    <Text>Notificação Ativa: {lembrete.notificacao ? 'Sim' : 'Não'}</Text>
-                </View>
-            ))}
-
-            {/* Formulário para adicionar lembretes */}
-            <TextInput
-                placeholder="Texto do lembrete"
-                value={novoLembrete}
-                onChangeText={(text) => setNovoLembrete(text)}
-                style={styles.input}
-            />
 
             <View style={styles.pickerContainer}>
                 <Text style={styles.label}>Tipo de Lembrete</Text>
@@ -89,12 +72,28 @@ function Lembretes() {
                     onValueChange={(value) => setNotificacaoAtiva(value)}
                     value={notificacaoAtiva}
                 />
+            
+                <TextInput
+                    placeholder="Texto do lembrete"
+                    value={novoLembrete}
+                    onChangeText={(text) => setNovoLembrete(text)}
+                    style={styles.input}
+                />
             </View>
 
             {/* Botão para adicionar novo lembrete */}
             <TouchableOpacity style={styles.adicionarButton} onPress={adicionarLembrete}>
                 <Text style={styles.adicionarButtonText}>Adicionar Lembrete</Text>
             </TouchableOpacity>
+
+            {/* Lista de lembretes */}
+            {lembretes.map((lembrete, index) => (
+                <View key={index} style={styles.lembreteItem}>
+                    <Text>{lembrete.texto}</Text>
+                    <Text>Tipo: {lembrete.tipo}</Text>
+                    <Text>Notificação Ativa: {lembrete.notificacao ? 'Sim' : 'Não'}</Text>
+                </View>
+            ))}
         </ScrollView>
     );
 }

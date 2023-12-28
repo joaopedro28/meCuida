@@ -1,21 +1,56 @@
-// LoginScreen.js
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
+import useAppWrite from '../composables/useAppWrite';
+import { Databases } from 'appwrite';
+import { useUser } from '../composables/UserContext';
 
 const LoginScreen = () => {
-
     const navigation = useNavigation();
+    const appwrite = useAppWrite();
+    const database = new Databases(appwrite);
 
-    const handleLogin = () => {
-        // Lógica de autenticação aqui
+    const { setGlobalUserId } = useUser();
 
-        // Navegue para a tela de Dashboard após o login bem-sucedido
-        navigation.dispatch(StackActions.replace('Dashboard'));
+    const [user, setUser] = useState('');
+    const [cpf, setCpf] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            // Faça a solicitação ao Appwrite para obter os dados do usuário e do CPF
+            const data =  await database.listDocuments('657b4065cd96d233005a', '657b4073116903a3a9ac').then((response) => {
+                return response.documents
+            });
+
+            // Verifique se os dados do usuário e do CPF correspondem
+            if (Array.isArray(data) && data.length > 0) {
+                const userExists = data.some(item => item.user === user);
+                const cpfMatches = data.some(item => item.cpf === cpf);
+                
+                if (userExists && cpfMatches) {
+                    let userId = 'TESTE'
+                    
+                    data.find((item) => {
+                        if (item.user === user) {
+                            userId = item.$id
+                            setGlobalUserId(userId);
+                        } 
+                    })
+                    
+                    navigation.dispatch(StackActions.replace('Dashboard'));
+                    
+                    return;
+                }
+            }
+    
+            // Se não correspondem, exiba uma mensagem de erro ou tome outra ação apropriada
+            alert('Credenciais inválidas. Verifique seu usuário e CPF.');
+        } catch (error) {
+            console.error('Erro durante o login:', error);
+        }
     };
-
+    
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Faça Login </Text>
@@ -23,16 +58,20 @@ const LoginScreen = () => {
                 placeholder="User"
                 style={styles.input}
                 placeholderTextColor="#000"
+                value={user}
+                onChangeText={(text) => setUser(text)}
             />
             <TextInput
                 placeholder="CPF"
                 secureTextEntry
                 style={styles.input}
                 placeholderTextColor="#000"
+                value={cpf}
+                onChangeText={(text) => setCpf(text)}
             />
             <Button
                 title="Login"
-                onPress={() => handleLogin()}
+                onPress={handleLogin}
                 style={styles.button}
             />
         </View>
