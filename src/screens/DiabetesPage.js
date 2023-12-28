@@ -6,7 +6,7 @@ import jsonData from '../../assets/json/diabetes.json';
 
 const data = jsonData.diabetes;
 
-const ReactPage = () => {
+const DiabetesPage = () => {
   return (
     <View>
       <ScrollView>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
       textAlign: 'center',
   },
 });
-export default ReactPage;
+export default DiabetesPage;

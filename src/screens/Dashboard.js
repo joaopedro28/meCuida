@@ -6,11 +6,10 @@ import Header from '../components/Header';
 // Pages
 
 import HomePage from './HomePage';
-import RegisterActivities from './RegisterActivities';
+import DiabetesPage from './DiabetesPage';
 import Lembretes from './Lembretes';
-import RoutesPage from './RoutesPage';
 import OptionsPage from './Options';
-
+import RegisterActivities from './RegisterActivities';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -81,9 +80,9 @@ const Dashboard = () => {
                     name="Consultas"
                     component={Lembretes}
                     options={{
-                        tabBarLabel: 'Rotas Front-End',
+                        tabBarLabel: 'Consultas',
                         tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons name="api" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+                            <MaterialCommunityIcons name="doctor" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
                         ),
                         tabBarColor: '#2b47e5'
                     }}

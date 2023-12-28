@@ -29,7 +29,7 @@ const LoginScreen = () => {
                 const cpfMatches = data.some(item => item.cpf === cpf);
                 
                 if (userExists && cpfMatches) {
-                    let userId = 'TESTE'
+                    let userId = ''
                     
                     data.find((item) => {
                         if (item.user === user) {
@@ -53,7 +53,6 @@ const LoginScreen = () => {
     
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Faça Login </Text>
             <TextInput
                 placeholder="User"
                 style={styles.input}

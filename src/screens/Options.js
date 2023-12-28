@@ -4,9 +4,7 @@ import { ScrollView, View, Text, StyleSheet } from 'react-native';
 function OptionsPage() {
     return (
         <View >
-            
                 <Text style={styles.title}>Página de Opções</Text>
-            
         </View>
     );
 }

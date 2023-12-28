@@ -81,10 +81,7 @@ function Lembretes() {
                 />
             </View>
 
-            {/* Botão para adicionar novo lembrete */}
-            <TouchableOpacity style={styles.adicionarButton} onPress={adicionarLembrete}>
-                <Text style={styles.adicionarButtonText}>Adicionar Lembrete</Text>
-            </TouchableOpacity>
+            <Button title="Adicionar Lembrete" onPress={adicionarLembrete} />
 
             {/* Lista de lembretes */}
             {lembretes.map((lembrete, index) => (
