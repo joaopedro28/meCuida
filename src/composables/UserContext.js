@@ -9,8 +9,11 @@ export const UserProvider = ({ children }) => {
         setUserId(id);
     };
 
+    const clearGlobalUserId = () => {
+        setUserId(null);
+    };
     return (
-        <UserContext.Provider value={{ userId, setGlobalUserId }}>
+        <UserContext.Provider value={{ userId, setGlobalUserId, clearGlobalUserId }}>
             {children}
         </UserContext.Provider>
     );

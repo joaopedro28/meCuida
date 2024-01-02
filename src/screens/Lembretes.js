@@ -4,16 +4,22 @@ import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DatePicker from 'react-native-modern-datepicker';
 import { getToday, getFormatedDate } from 'react-native-modern-datepicker'
+import PushNotification from 'react-native-push-notification';
+import moment from 'moment';
+
 function Lembretes() {
     const [lembretes, setLembretes] = useState([]);
     const [novoLembrete, setNovoLembrete] = useState('');
     const [tipoLembrete, setTipoLembrete] = useState('Atividade Fisica');
     const [notificacaoAtiva, setNotificacaoAtiva] = useState(false);
-    const [date, setDate] = useState('12/12/2023');
-    const today = new Date();
-    const startDate = getFormatedDate(today.setDate(today.getDate() + 1), 'DD/MM/YYYY');
+    const [date, setDate] = useState('');
+
     const [open, setOpen] = useState(false);
     const [openDatePicker, setOpenDatePicker] = useState(false);
+    const [time, setTime] = useState('');
+
+    const today = new Date();
+    const startDate = getFormatedDate(today.setDate(today.getDate()), "YYYY/MM/DD h:m");
 
     useEffect(() => {
         carregarLembretes();
@@ -44,6 +50,7 @@ function Lembretes() {
     const salvarLembretes = async (novosLembretes) => {
         try {
             await AsyncStorage.setItem('lembretes', JSON.stringify(novosLembretes));
+            setOpen(!open)
         } catch (error) {
             console.error('Erro ao salvar lembretes no AsyncStorage:', error);
         }
@@ -51,15 +58,45 @@ function Lembretes() {
 
     const adicionarLembrete = () => {
         if (novoLembrete.trim() !== '') {
-            const novoLembreteObj = { texto: novoLembrete, tipo: tipoLembrete, notificacao: notificacaoAtiva };
+            const novoLembreteObj = { texto: novoLembrete, tipo: tipoLembrete, notificacao: notificacaoAtiva, data: date, hora: time };
             const novosLembretes = [...lembretes, novoLembreteObj];
 
             setLembretes(novosLembretes);
             setNovoLembrete('');
             salvarLembretes(novosLembretes);
+
+            // if (notificacaoAtiva) {
+            //     agendarNotificacao(date, time, novoLembrete);
+            // }
         }
     };
+    const transformarData = (dataString) => {
+        // Utilizando moment para converter a string para o formato desejado
+        const dataFormatada = moment(dataString, 'YYYY/MM/DD HH:mm').toISOString();
 
+        return dataFormatada;
+    };
+
+
+    const agendarNotificacao = (data, hora) => {
+        const dataHora = `${data} ${hora}`;
+        const dataFormatada = transformarData(dataHora);
+        const agora = new Date();
+
+        // Converte dataFormatada para um timestamp
+        const timestampDataFormatada = moment(dataFormatada).valueOf();
+
+        // Verifica se a data e hora selecionadas são futuras
+        if (timestampDataFormatada > agora.getTime()) {
+            PushNotification.localNotificationSchedule({
+                message: 'Seu lembrete!',
+                date: new Date(timestampDataFormatada), // Convertendo de volta para um objeto Date
+                allowWhileIdle: true,
+            });
+        } else {
+            console.log('A data e hora selecionadas são no passado.');
+        }
+    };
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>Lembretes</Text>
@@ -93,7 +130,6 @@ function Lembretes() {
                             </Picker>
                         </View>
 
-
                         <TextInput
                             placeholder="Texto do lembrete"
                             value={novoLembrete}
@@ -101,10 +137,13 @@ function Lembretes() {
                             style={styles.input}
                         />
 
-                        <Button title="Data" onPress={handleOpenDatePicker} />
                         <View style={styles.dateContainer}>
-                            <Text>{date}</Text>
+                            <TouchableOpacity style={styles.dateButton} onPress={handleOpenDatePicker} >
+                                <Text style={styles.dateButtonText}>Escolha a Data e Hora</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.selectedDateText}>{date} {time}</Text>
                         </View>
+
                         <View style={styles.switchContainer}>
                             <Text>Ativar Notificação</Text>
                             <Switch
@@ -136,6 +175,7 @@ function Lembretes() {
                             minimumDate={startDate}
                             onDateChange={handleDateChange}
                             selected={date}
+                            onTimeChange={selectedTime => { setTime(selectedTime); setOpenDatePicker(false) }}
                         />
                     </View>
                 </View>
@@ -146,7 +186,7 @@ function Lembretes() {
                 <View key={index} style={styles.lembreteItem}>
                     <Text>{lembrete.texto}</Text>
                     <Text>Tipo: {lembrete.tipo}</Text>
-                    <Text>Notificação Ativa: {lembrete.notificacao ? 'Sim' : 'Não'}</Text>
+                    <Text>Data e Hora: {lembrete.data} {lembrete.hora}</Text>
                 </View>
             ))}
         </ScrollView>
@@ -163,6 +203,27 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginVertical: 16,
     },
+    selectedDateText: {
+        fontSize: 16,
+        marginBottom: 10,
+    },
+    dateContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 15,
+        gap: 20
+    },
+    dateButton: {
+        backgroundColor: '#2b47e5',
+        padding: 10,
+        borderRadius: 4,
+        marginRight: 10,
+    },
+    dateButtonText: {
+        color: '#fff',
+        fontSize: 14,
+    },
+
     lembreteItem: {
         padding: 10,
         borderBottomWidth: 1,
@@ -195,6 +256,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         borderRadius: 30,
         backgroundColor: '#fd0000',
+        zIndex: 2
     },
     label: {
         fontSize: 16,

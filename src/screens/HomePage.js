@@ -18,7 +18,6 @@ function HomePage() {
             const response = await database.getDocument('657b4065cd96d233005a', '657b4073116903a3a9ac', userId);
             setUserName(response.name);
         } catch (error) {
-            console.error('Erro ao carregar atividades', error);
         }
     };
 

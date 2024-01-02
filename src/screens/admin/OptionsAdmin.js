@@ -1,43 +1,20 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
-import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
-import { useUser } from '../composables/UserContext';
+import { useUser } from '../../composables/UserContext';
 
-function OptionsPage() {
+function OptionsAdmin() {
     const { clearGlobalUserId } = useUser();
     const navigation = useNavigation();
-    const [openEditProfile, setOpenEditProfile] = useState(false);
 
     const handleLogout = () => {
         clearGlobalUserId();
         navigation.dispatch(StackActions.replace('Login'));
     };
 
-    const handleEditProfile = () => {
-        //Eidtar campos e mandar um post para editar o perfil
-    };
-
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Menu</Text>
-
-            <TouchableOpacity onPress={() => setOpenEditProfile(!openEditProfile)} style={styles.button}>
-                <Text style={styles.buttonText}>Editar Meu Perfil</Text>
-            </TouchableOpacity>
-
-            <Modal visible={openEditProfile}>
-                <View style={styles.container}>
-                    <Text style={styles.title}>Editar Perfil</Text>
-                    <TouchableOpacity onPress={handleEditProfile} style={styles.button}>
-                        <Text style={styles.buttonText}>Editar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setOpenEditProfile(false)} style={styles.button}>
-                        <Text style={styles.buttonText}>Fechar</Text>
-                    </TouchableOpacity>
-                </View>
-            </Modal>
 
             <TouchableOpacity onPress={handleLogout} style={styles.button}>
                 <Text style={styles.buttonText}>Sair</Text>
@@ -72,4 +49,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default OptionsPage;
+export default OptionsAdmin;

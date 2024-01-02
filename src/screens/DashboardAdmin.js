@@ -3,16 +3,13 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 
-// Pages
+import HomeAdmin from './admin/HomeAdmin';
+import CreateAppointment from './admin/CreateAppointment';
+import CreateUser from './admin/CreateUser';
+import OptionsAdmin from './admin/OptionsAdmin';
 
-import HomePage from './HomePage';
-import Lembretes from './Lembretes';
-import OptionsPage from './Options';
-import RegisterActivities from './RegisterActivities';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Appointments from './Appoitmens';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -32,19 +29,18 @@ const TabIcon = ({ name, color, focused }) => {
 const Dashboard = () => {
     return (
         <>
-            <Header title="Me Cuida" />
-
+            <Header title="Me Cuida Painel Adminstrativo" />
 
             <Tab.Navigator
-                initialRouteName="Home"
+                initialRouteName="HomeAdmin"
                 activeColor="#fff"
                 inactiveColor="#1476aa"
                 barStyle={{ backgroundColor: '#8ECDF1' }}
             >
 
                 <Tab.Screen
-                    name="Home"
-                    component={HomePage}
+                    name="HomeAdmin"
+                    component={HomeAdmin}
                     options={{
                         backgroundColor: 'transparent',
                         tabBarIcon: ({ color, focused }) => (
@@ -53,43 +49,32 @@ const Dashboard = () => {
                     }}
                 />
                 <Tab.Screen
-                    name="Lembretes"
-                    component={Lembretes}
+                    name="CreateUser"
+                    component={CreateUser}
                     options={{
-                        tabBarLabel: 'Lembretes',
+                        tabBarLabel: 'Criar Usuario',
                         tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons name="clock" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+                            <MaterialCommunityIcons name="account-plus" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
                         ),
                         tabBarColor: '#2b47e5'
                     }}
                 />
 
                 <Tab.Screen
-                    name="Registrar Atividades"
-                    component={RegisterActivities}
+                    name="CreateAppointment"
+                    component={CreateAppointment}
                     options={{
                         backgroundColor: 'transparent',
-                        tabBarLabel: 'Registrar Atividades',
+                        tabBarLabel: 'Registrar Consulta',
                         tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons name="playlist-edit" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+                            <MaterialCommunityIcons name="beaker-plus" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
                         ),
                         tabBarColor: '#2b47e5'
                     }} />
 
                 <Tab.Screen
-                    name="Consultas"
-                    component={Appointments}
-                    options={{
-                        tabBarLabel: 'Consultas',
-                        tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons name="doctor" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
-                        ),
-                        tabBarColor: '#2b47e5'
-                    }}
-                />
-                <Tab.Screen
                     name="Opções"
-                    component={OptionsPage}
+                    component={OptionsAdmin}
                     options={{
                         tabBarLabel: 'Opções',
                         tabBarIcon: ({ color }) => (

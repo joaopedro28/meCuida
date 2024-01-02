@@ -17,33 +17,61 @@ const LoginScreen = () => {
     const [cpf, setCpf] = useState('');
 
     const handleLogin = async () => {
+        
+        
         try {
             // Faça a solicitação ao Appwrite para obter os dados do usuário e do CPF
-            const data =  await database.listDocuments('657b4065cd96d233005a', '657b4073116903a3a9ac').then((response) => {
+            const dataAdmin =  await database.listDocuments('657b4065cd96d233005a', '657b40ffead20fadf40e').then((response) => {
                 return response.documents
             });
 
-            // Verifique se os dados do usuário e do CPF correspondem
-            if (Array.isArray(data) && data.length > 0) {
-                const userExists = data.some(item => item.user === user);
-                const cpfMatches = data.some(item => item.cpf === cpf);
-                
-                if (userExists && cpfMatches) {
+            if (Array.isArray(dataAdmin) && dataAdmin.length > 0) {
+                const userExists = dataAdmin.some(item => item.user === user);
+                const cpfMatches = dataAdmin.some(item => item.cpf === cpf);
+                const isAdmin = dataAdmin.some(item => item.admin === true);
+
+                if (userExists && cpfMatches && isAdmin) {
                     let userId = ''
                     
-                    data.find((item) => {
+                    dataAdmin.find((item) => {
                         if (item.user === user) {
                             userId = item.$id
                             setGlobalUserId(userId);
                         } 
                     })
                     
-                    navigation.dispatch(StackActions.replace('Dashboard'));
+                    navigation.dispatch(StackActions.replace('DashboardAdmin'));
                     
                     return;
                 }
+
+                else {
+                    const data =  await database.listDocuments('657b4065cd96d233005a', '657b4073116903a3a9ac').then((response) => {
+                        return response.documents
+                    });
+        
+                    // Verifique se os dados do usuário e do CPF correspondem
+                    if (Array.isArray(data) && data.length > 0) {
+                        const userExists = data.some(item => item.user === user);
+                        const cpfMatches = data.some(item => item.cpf === cpf);
+                        
+                        if (userExists && cpfMatches) {
+                            let userId = ''
+                            
+                            data.find((item) => {
+                                if (item.user === user) {
+                                    userId = item.$id
+                                    setGlobalUserId(userId);
+                                } 
+                            })
+                            
+                            navigation.dispatch(StackActions.replace('Dashboard'));
+                            
+                            return;
+                        }
+                    }        
+                }
             }
-    
             // Se não correspondem, exiba uma mensagem de erro ou tome outra ação apropriada
             alert('Credenciais inválidas. Verifique seu usuário e CPF.');
         } catch (error) {
