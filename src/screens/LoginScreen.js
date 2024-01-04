@@ -6,6 +6,7 @@ import useAppWrite from '../composables/useAppWrite';
 import { Databases } from 'appwrite';
 import { useUser } from '../composables/UserContext';
 import logo from '../../assets/logo-color.png';
+
 const LoginScreen = () => {
     const navigation = useNavigation();
     const appwrite = useAppWrite();
@@ -17,8 +18,6 @@ const LoginScreen = () => {
     const [cpf, setCpf] = useState('');
 
     const handleLogin = async () => {
-
-
         try {
             // Faça a solicitação ao Appwrite para obter os dados do usuário e do CPF
             const dataAdmin = await database.listDocuments('657b4065cd96d233005a', '657b40ffead20fadf40e').then((response) => {

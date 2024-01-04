@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { useUser } from '../composables/UserContext';
 import useAppWrite from '../composables/useAppWrite';
-import { Databases, ID } from 'appwrite';
+import { Databases } from 'appwrite';
 
 const Appointments = () => {
     const { userId } = useUser();

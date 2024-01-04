@@ -1,18 +1,16 @@
 // Dashboard.js
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Header from '../components/Header';
-
-// Pages
 
 import HomePage from './HomePage';
 import Lembretes from './Lembretes';
-import OptionsPage from './Options';
 import RegisterActivities from './RegisterActivities';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Appointments from './Appoitmens';
+import OptionsPage from './Options';
+
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -33,8 +31,6 @@ const Dashboard = () => {
     return (
         <>
             <Header title="Me Cuida" />
-
-
             <Tab.Navigator
                 initialRouteName="Home"
                 activeColor="#fff"
@@ -69,7 +65,7 @@ const Dashboard = () => {
                     component={RegisterActivities}
                     options={{
                         backgroundColor: 'transparent',
-                        tabBarLabel: 'Registrar Atividades',
+                        tabBarLabel: 'Atividades',
                         tabBarIcon: ({ color }) => (
                             <MaterialCommunityIcons name="playlist-edit" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
                         ),

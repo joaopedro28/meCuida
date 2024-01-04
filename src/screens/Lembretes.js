@@ -201,7 +201,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginVertical: 16,
     },
     selectedDateText: {
         fontSize: 16,

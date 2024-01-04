@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TextInput, StyleSheet, FlatList, Modal } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet, FlatList, Modal, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useUser } from '../composables/UserContext';
 import useAppWrite from '../composables/useAppWrite';
 import { Databases, ID } from 'appwrite';
 
-const RegistroAtividades = () => {
+function RegisterActivities() {
     const { userId } = useUser();
     const [tipoAtividade, setTipoAtividade] = useState('');
     const [turno, setTurno] = useState('');
     const [descricao, setDescricao] = useState('');
-    //    const [date, setData] = useState('');
     const [atividades, setAtividades] = useState([]);
     const [open, setOpen] = useState(false);
 
@@ -36,7 +35,6 @@ const RegistroAtividades = () => {
         const data = {
             type: tipoAtividade,
             activity_shift: turno,
-            //date: date,
             description: descricao,
             profile: userId
         };
@@ -44,18 +42,16 @@ const RegistroAtividades = () => {
         try {
             const response = await database.createDocument('657b4065cd96d233005a', '65898dfcd677d6ad2341', ID.unique(), data);
             alert('Atividade Registrada com Sucesso.');
-            loadAtividades(); // Recarrega a lista após o registro
+            loadAtividades();
             setOpen(false);
         } catch (error) {
             alert.error('Erro durante o registro', error);
             setOpen(false);
         }
 
-        // Limpar os campos após o registro
         setTipoAtividade('');
         setTurno('');
         setDescricao('');
-        //setData('');
     };
 
     const handleOpen = () => {
@@ -73,10 +69,11 @@ const RegistroAtividades = () => {
                 visible={open}
                 animationType="slide"
             >
-                <View
-                    style={styles.modal}
-                >
+                <View style={styles.modal}>
                     <View style={styles.modalContainer}>
+                        <TouchableOpacity style={styles.closeModal} onPress={handleOpen} >
+                            <Text style={styles.closeModalText}>X</Text>
+                        </TouchableOpacity>
                         <View style={styles.pickerContainer}>
 
                             <Picker
@@ -123,7 +120,6 @@ const RegistroAtividades = () => {
                     </View>
                 </View>
             </Modal>
-            {/* Lista de Atividades */}
             <FlatList
                 data={atividades}
                 keyExtractor={(item) => item.$id}
@@ -225,4 +221,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default RegistroAtividades;
+export default RegisterActivities;
