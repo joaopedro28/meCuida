@@ -26,7 +26,7 @@ const CreateUser = () => {
                 data
             );
 
-            console.log('Cadastro realizado com sucesso:', response);
+            console.log('Cadastro realizado com sucesso!');
             alert('Cadastro realizado com sucesso!');
         } catch (error) {
             console.error('Erro durante o cadastro:', error);

@@ -15,6 +15,7 @@ import DashboardAdmin from '../screens/DashboardAdmin';
 import Opcoes from '../screens/Options';
 import RegistroAtividades from '../screens/RegisterActivities';
 import OptionsAdmin from '../screens/admin/OptionsAdmin';
+import CreateHealthProfile from '../screens/admin/CreateHealthProfile';
 const Stack = createStackNavigator();
 
 const Navigation = () => {
@@ -33,6 +34,7 @@ const Navigation = () => {
                 <Stack.Screen name="DashboardAdmin" component={DashboardAdmin} options={{ headerShown: false }} />
                 <Stack.Screen name="HomePageAdmin" component={HomePageAdmin} options={{ title: 'Home', headerShown: false }} />
                 <Stack.Screen name="OptionsAdmin" component={OptionsAdmin} options={{ title: 'Opções', headerShown: false }} />
+                <Stack.Screen name="CreateHealthProfile" component={CreateHealthProfile} options={{ title: 'Criar Perfil de Saúde', headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

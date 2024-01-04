@@ -10,7 +10,7 @@ const RegistroAtividades = () => {
     const [tipoAtividade, setTipoAtividade] = useState('');
     const [turno, setTurno] = useState('');
     const [descricao, setDescricao] = useState('');
-//    const [date, setData] = useState('');
+    //    const [date, setData] = useState('');
     const [atividades, setAtividades] = useState([]);
     const [open, setOpen] = useState(false);
 
@@ -23,7 +23,8 @@ const RegistroAtividades = () => {
             const atividadesDoUsuario = response.documents.filter((atividade) => atividade && atividade.profile && atividade.profile.$id === userId);
             setAtividades(atividadesDoUsuario);
         } catch (error) {
-            console.error('Erro ao carregar', error);}
+            console.error('Erro ao carregar', error);
+        }
     };
 
     useEffect(() => {
@@ -65,7 +66,6 @@ const RegistroAtividades = () => {
         <View style={styles.container}>
             <Text style={styles.heading}>Registrar Atividade</Text>
 
-
             <Button title="Registrar Atividade" onPress={handleOpen} />
 
             <Modal
@@ -77,30 +77,34 @@ const RegistroAtividades = () => {
                     style={styles.modal}
                 >
                     <View style={styles.modalContainer}>
-                        <Picker
-                            selectedValue={tipoAtividade}
-                            onValueChange={(itemValue) => setTipoAtividade(itemValue)}
-                            style={styles.picker}
-                        >
-                            <Picker.Item style={styles.label} label="Selecione o Tipo" value="" />
-                            <Picker.Item style={styles.label} label="Medicação" value="Medicação" />
-                            <Picker.Item style={styles.label} label="Atividade Física" value="Atividade Física" />
-                            <Picker.Item style={styles.label} label="Medição de Batimentos" value="Medição de Batimentos" />
-                            <Picker.Item style={styles.label} label="Medição de Glicemia" value="Medição de Glicemia" />
-                            <Picker.Item style={styles.label} label="Outros" value="Outros" />
-                        </Picker>
+                        <View style={styles.pickerContainer}>
 
-                        <Picker
-                            selectedValue={turno}
-                            onValueChange={(itemValue) => setTurno(itemValue)}
-                            style={styles.picker}
-                        >
-                            <Picker.Item style={styles.label} label="Selecione o Turno" value="" />
-                            <Picker.Item style={styles.label} label="Manhã" value="Manhã" />
-                            <Picker.Item style={styles.label} label="Tarde" value="Tarde" />
-                            <Picker.Item style={styles.label} label="Noite" value="Noite" />
-                        </Picker>
+                            <Picker
+                                selectedValue={tipoAtividade}
+                                onValueChange={(itemValue) => setTipoAtividade(itemValue)}
+                                style={styles.picker}
+                            >
+                                <Picker.Item style={styles.label} label="Selecione o Tipo" value="" />
+                                <Picker.Item style={styles.label} label="Medicação" value="Medicação" />
+                                <Picker.Item style={styles.label} label="Atividade Física" value="Atividade Física" />
+                                <Picker.Item style={styles.label} label="Medição de Batimentos" value="Medição de Batimentos" />
+                                <Picker.Item style={styles.label} label="Medição de Glicemia" value="Medição de Glicemia" />
+                                <Picker.Item style={styles.label} label="Outros" value="Outros" />
+                            </Picker>
+                        </View>
+                        <View style={styles.pickerContainer}>
 
+                            <Picker
+                                selectedValue={turno}
+                                onValueChange={(itemValue) => setTurno(itemValue)}
+                                style={styles.picker}
+                            >
+                                <Picker.Item style={styles.label} label="Selecione o Turno" value="" />
+                                <Picker.Item style={styles.label} label="Manhã" value="Manhã" />
+                                <Picker.Item style={styles.label} label="Tarde" value="Tarde" />
+                                <Picker.Item style={styles.label} label="Noite" value="Noite" />
+                            </Picker>
+                        </View>
                         <TextInput
                             placeholder="Descrição"
                             value={descricao}
@@ -145,13 +149,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginVertical: 16,
     },
+    pickerContainer: {
+        height: 50,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        backgroundColor: '#fff',
+        color: '#000',
+        marginBottom: 10,
+    },
     heading: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 16,
     },
     input: {
-        height: 40,
+        height: 50,
         borderWidth: 1,
         borderColor: '#ccc',
         marginBottom: 10,
@@ -197,7 +209,7 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         margin: 16,
-        padding: 20,
+        paddingHorizontal: 20,
         backgroundColor: '#fff',
         width: '90%',
         borderRadius: 8,
@@ -209,6 +221,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
+        paddingVertical: 35
     }
 });
 

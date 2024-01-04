@@ -7,7 +7,7 @@ import HomeAdmin from './admin/HomeAdmin';
 import CreateAppointment from './admin/CreateAppointment';
 import CreateUser from './admin/CreateUser';
 import OptionsAdmin from './admin/OptionsAdmin';
-
+import CreateHealthProfile from './admin/CreateHealthProfile';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -42,6 +42,7 @@ const Dashboard = () => {
                     name="HomeAdmin"
                     component={HomeAdmin}
                     options={{
+                        tabBarLabel: 'Home',
                         backgroundColor: 'transparent',
                         tabBarIcon: ({ color, focused }) => (
                             <TabIcon name="home" backgroundColor='transparent' color={color} focused={focused} />
@@ -73,6 +74,17 @@ const Dashboard = () => {
                     }} />
 
                 <Tab.Screen
+                    name="CreateHealthProfile"
+                    component={CreateHealthProfile}
+                    options={{
+                        tabBarLabel: 'Profissional Da Saúde',
+                        tabBarIcon: ({ color }) => (
+                            <MaterialCommunityIcons name="signal-hspa-plus" color={color} size={26} />
+                        ),
+                        tabBarColor: '#2b47e5'
+                    }}
+                />
+                <Tab.Screen
                     name="Opções"
                     component={OptionsAdmin}
                     options={{
@@ -83,6 +95,7 @@ const Dashboard = () => {
                         tabBarColor: '#2b47e5'
                     }}
                 />
+
             </Tab.Navigator>
         </>
     );

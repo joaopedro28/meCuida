@@ -21,8 +21,6 @@ function OptionsPage() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Menu</Text>
-
             <TouchableOpacity onPress={() => setOpenEditProfile(!openEditProfile)} style={styles.button}>
                 <Text style={styles.buttonText}>Editar Meu Perfil</Text>
             </TouchableOpacity>

@@ -1,33 +1,47 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { StackActions } from '@react-navigation/native';
 
 const HomeAdmin = () => {
+    const navigation = useNavigation();
+
+    const handleCreateUser = () => {
+        // Navegar para a aba 'CreateUser'
+        navigation.navigate('CreateUser');
+    };
+
+    const handleCreateAppointment = () => {
+        // Navegar para a aba 'CreateAppointment'
+        navigation.navigate('CreateAppointment');
+    };
+
+    const handleCreateHealthProfile = () => {
+        // Navegar para a aba 'CreateHealthProfile'
+        navigation.navigate('CreateHealthProfile');
+    }
+
+    // Adicione mais handlers para outros botões, se necessário
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Bem-vindo, Administrador!</Text>
             <Text style={styles.subtitle}>O que você gostaria de fazer?</Text>
 
-            <TouchableOpacity style={styles.button} >
-                <Text style={styles.buttonText}>Cadastrar Consulta</Text>
+            <TouchableOpacity style={styles.button} onPress={handleCreateUser}>
+                <Text style={styles.buttonText}>Criar Usuário</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} >
-                <Text style={styles.buttonText}>Gerenciar Usuários</Text>
+            <TouchableOpacity style={styles.button} onPress={handleCreateAppointment}>
+                <Text style={styles.buttonText}>Criar Consulta</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} >
-                <Text style={styles.buttonText}>Gerenciar Profissionais da Saúde</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} >
-                <Text style={styles.buttonText}>Opções</Text>
+            <TouchableOpacity style={styles.button} onPress={handleCreateHealthProfile}>
+                <Text style={styles.buttonText}>Criar Perfil de Profissional da Saúde</Text>
             </TouchableOpacity>
         </View>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
@@ -47,10 +61,11 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#2b47e5',
-        padding: 16,
+        paddingVertical: 16,
+        paddingHorizontal: 2,
         borderRadius: 8,
         marginTop: 16,
-        width: '80%',
+        width: '85%',
         alignItems: 'center',
     },
     buttonText: {

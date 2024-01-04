@@ -17,7 +17,6 @@ const CreateAppointment = () => {
     const [profiles, setProfiles] = useState([]);
     const [healthProfiles, setHealthProfiles] = useState([]);
 
-
     useEffect(() => {
         // Realize um GET para obter os perfis
         const getProfiles = async () => {
@@ -41,7 +40,7 @@ const CreateAppointment = () => {
         };
 
         getHealthProfiles();
-        getProfiles();
+
     }, []);
 
     const handleRegister = async () => {
@@ -51,12 +50,11 @@ const CreateAppointment = () => {
                 date: date,
                 notes: notes,
                 profile: selectedProfile,
-                healthProfile: selectedProfile
+                healthProfile: selectedHealthProfile,
             };
-
             const response = await database.createDocument(
-                '657b4065cd96d233005a', // Substitua pelo ID do seu banco de dados
-                '658eb9f30643c49a2832', // Substitua pelo ID da sua coleção de consultas
+                '657b4065cd96d233005a',
+                '658eb9f30643c49a2832',
                 ID.unique(),
                 data
             );

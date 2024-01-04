@@ -30,18 +30,22 @@ const Appointments = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Consultas</Text>
-            <FlatList
-                data={consultas}
-                keyExtractor={(item) => item.$id}
-                renderItem={({ item }) => (
-                    <View style={styles.consultaItem}>
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Text>{item.notes}</Text>
-                        <Text style={styles.date}>Data: {item.date}</Text>
-                        <Text style={styles.date}>Profissional Responsavel: {item.healthProfile.name}</Text>
-                    </View>
-                )}
-            />
+            {consultas.length > 0 ? (
+                <FlatList
+                    data={consultas}
+                    keyExtractor={(item) => item.$id}
+                    renderItem={({ item }) => (
+                        <View style={styles.consultaItem}>
+                            <Text style={styles.title}>{item.title}</Text>
+                            <Text>{item.notes}</Text>
+                            <Text style={styles.date}>Data: {item.date}</Text>
+                            <Text style={styles.date}>Profissional Responsavel: {item.healthProfile?.name}</Text>
+                        </View>
+                    )}
+                />
+            ) : (
+                <Text style={styles.noConsultas}>Não há consultas disponíveis.</Text>
+            )}
         </View>
     );
 };
@@ -71,6 +75,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
         marginBottom: 8,
+    },
+    noConsultas: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 20,
     },
 });
 
