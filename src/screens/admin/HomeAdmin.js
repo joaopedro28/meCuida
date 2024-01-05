@@ -1,6 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useState, useEffect } from 'react';
+
+import useAppWrite from '../../composables/useAppWrite';
+import { Databases } from 'appwrite';
+import { useUser } from '../../composables/UserContext';
 
 const HomeAdmin = () => {
     const navigation = useNavigation();
@@ -19,12 +24,25 @@ const HomeAdmin = () => {
         // Navegar para a aba 'CreateHealthProfile'
         navigation.navigate('CreateHealthProfile');
     }
+    const { userId } = useUser();
+    const [userName, setUserName] = useState('');
+    const appwrite = useAppWrite();
+    const database = new Databases(appwrite);
 
-    // Adicione mais handlers para outros botões, se necessário
+    const loadAdminUser = async () => {
+        try {
+            const response = await database.getDocument('657b4065cd96d233005a', '657b40ffead20fadf40e', userId);
+            setUserName(response.name);
+        } catch (error) {
+        }
+    };
 
+    useEffect(() => {
+        loadAdminUser();
+    })
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Bem-vindo, Administrador!</Text>
+            <Text style={styles.title}>Bem-vindo, Administrador {userName}!</Text>
             <Text style={styles.subtitle}>O que você gostaria de fazer?</Text>
 
             <TouchableOpacity style={styles.button} onPress={handleCreateUser}>
